@@ -14,7 +14,7 @@ row3 = ['_', '_', '_', '_', '_', '_', '_']
 row2 = ['_', '_', '_', '_', '_', '_', '_']
 row1 = ['_', '_', '_', '_', '_', '_', '_']
 
-p = [row6, row5, row4, row3, row2, row1]
+p = [row1, row2, row3, row4, row5, row6]
 
 def display_board():
     r6 = f"|{'|'.join(row6)}|"
@@ -24,29 +24,25 @@ def display_board():
     r2 = f"|{'|'.join(row2)}|"
     r1 = f"|{'|'.join(row1)}|"
 
-    print(\
-        f"""
-        {r6}
-        {r5}
-        {r4}
-        {r3}
-        {r2}
-        {r1}
-        """
-    )
+    print(f"\n\t{r6}\n\t{r5}\n\t{r4}\n\t{r3}\n\t{r2}\n\t{r1}\n\t 1 2 3 4 5 6 7\n")
 
 print("Welcome to Connect Four!")
 player_one = input("Please enter a name for player 1 (this player will go first): ") or "Player 1"
 player_two = input("Please enter a name for player 2: ") or "Player 2"
+player_turn = player_one
 
-print(f"It's {player_one}'s turn")
-print("Here is the current board:")
-print(\
-    f"""
-     1 2 3 4 5 6 7
-    Please select a column to play a piece.
-    """
-)
+print(f"It's {player_turn}'s turn!")
+print("Here is the current board: ")
+display_board()
+player_choice = int(input("Please select a column to play your token: ")) - 1
+row1[player_choice] = 'x'
+display_board()
+
+
+"""
+Example of inputting a token:
+
 col = int(input("Column: ")) - 1
 p[5][col] = 'x'
 display_board()
+"""

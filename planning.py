@@ -29,21 +29,22 @@ def display_board():
 print("Welcome to Connect Four!")
 player_one = input("Please enter a name for player 1: ") or "Player 1"
 player_two = input("Please enter a name for player 2: ") or "Player 2"
-player_turn = player_two
+player_turn = player_one
 def play_round():
-    print(f"It's {player_turn}'s ({'x' if player_turn ==  player_one else 'o'}) turn!")
-    print("Here is the current board: ")
-    display_board()
-    player_choice = int(input("Please select a column to play your token: ")) - 1
-    row1[player_choice] = 'x' if player_turn == player_one else 'o'
-    display_board()
-    player_turn = player_one if player_turn == player_two else player_two
+    i = 0
+    while True:
+        global player_turn
+        print(f"It's {player_turn}'s ({'x' if player_turn == player_one else 'o'}) turn!")
+        print("Here is the current board: ")
+        display_board()
+        player_choice = int(input("Please select a column to play your token: ")) - 1
 
+        # Need to implement dynamic check for each row
+        row1[player_choice] = 'x' if player_turn == player_one else 'o'
+        display_board()
+        player_turn = player_one if player_turn == player_two else player_two
+        i += 1
+        if i > 10:
+            break
 
-"""
-Example of inputting a token:
-
-col = int(input("Column: ")) - 1
-p[5][col] = 'x'
-display_board()
-"""
+play_round()

@@ -27,15 +27,15 @@ def display_board():
     print(f"\n\t{r6}\n\t{r5}\n\t{r4}\n\t{r3}\n\t{r2}\n\t{r1}\n\t 1 2 3 4 5 6 7\n")
 
 print("Welcome to Connect Four!")
-player_one = input("Please enter a name for player 1 (this player will go first): ") or "Player 1"
+player_one = input("Please enter a name for player 1: ") or "Player 1"
 player_two = input("Please enter a name for player 2: ") or "Player 2"
-player_turn = player_one
+player_turn = player_two
 
-print(f"It's {player_turn}'s turn!")
+print(f"It's {player_turn}'s ({'x' if player_turn ==  player_one else 'o'}) turn!")
 print("Here is the current board: ")
 display_board()
 player_choice = int(input("Please select a column to play your token: ")) - 1
-row1[player_choice] = 'x'
+row1[player_choice] = 'x' if player_turn == player_one else 'o'
 display_board()
 
 

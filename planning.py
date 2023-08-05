@@ -9,6 +9,3 @@ Write a technical blog post on the project
 
 
 
-
-
-

@@ -1,10 +1,10 @@
 '''
-Project Objectives:
-Build a terminal program using Python
-Add at least one interactive feature using input()
-Use Git version control
-Use the command line and file navigation
-Write a technical blog post on the project
+# Project Objectives:
+# Build a terminal program using Python
+#! Add at least one interactive feature using input()
+#! Use Git version control
+# Use the command line and file navigation
+# Write a technical blog post on the project
 '''
 
 row6 = ['_', '_', '_', '_', '_', '_', '_']
@@ -34,13 +34,21 @@ def play_round():
     i = 0
     while True:
         global player_turn
-        print(f"It's {player_turn}'s ({'x' if player_turn == player_one else 'o'}) turn!")
+        player_token = 'x' if player_turn == player_one else 'o'
+        print(f"It's {player_turn}'s ({player_token}) turn!")
         print("Here is the current board: ")
         display_board()
         player_choice = int(input("Please select a column to play your token: ")) - 1
 
-        # Need to implement dynamic check for each row
-        row1[player_choice] = 'x' if player_turn == player_one else 'o'
+        # dynamic check to find the row
+        for row in p:
+            if row[player_choice] == '_':
+                row[player_choice] = player_token
+                break
+            if row6[player_choice] != '_':
+                print('Column is full, pick another one!')
+                play_round()
+        
         display_board()
         player_turn = player_one if player_turn == player_two else player_two
         i += 1

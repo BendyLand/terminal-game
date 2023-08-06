@@ -7,6 +7,7 @@
 # Write a technical blog post on the project
 '''
 
+
 row6 = ['_', '_', '_', '_', '_', '_', '_']
 row5 = ['_', '_', '_', '_', '_', '_', '_']
 row4 = ['_', '_', '_', '_', '_', '_', '_']
@@ -17,28 +18,65 @@ row1 = ['_', '_', '_', '_', '_', '_', '_']
 p = [row1, row2, row3, row4, row5, row6]
 
 def check_win(turn, choice):
+    def check_diagonal_win(tokens):
+        if tokens == 4:
+            print(f"Game over!\n{turn} wins!")
+            return True
+        return False
+
     # check rows
     for row in p:
         tokens = 0
         for item in row:
             if item == player_token:
                 tokens += 1
-            if item != player_token:
+                if check_diagonal_win(tokens):
+                    return True
+            else:
                 tokens = 0
-            if tokens == 4:
-                print(f"Game over!\n{turn} wins!")
-                return True
 
     # check columns
     col_tokens = 0
     for row in p:
         if row[choice] == player_token:
             col_tokens += 1
-        if row[choice] != player_token:
+            if check_diagonal_win(col_tokens):
+                return True
+        else:
             col_tokens = 0
-        if col_tokens == 4:
-            print(f"Game over!\n{turn} wins!")
-            return True
+
+    # check diagonal (bottom-left to top-right)
+    row_idx, col_idx = 0, 0
+    for row in range(len(p) - 1, -1, -1):
+        for col in range(len(p[row])):
+            if p[row][col] == player_token:
+                tokens = 1
+                row_idx, col_idx = row, col
+                while row_idx - 1 >= 0 and col_idx + 1 < len(p[0]):
+                    row_idx -= 1
+                    col_idx += 1
+                    if p[row_idx][col_idx] == player_token:
+                        tokens += 1
+                        if check_diagonal_win(tokens):
+                            return True
+                    else:
+                        break
+
+    # check diagonal (bottom-right to top-left)
+    for row in range(len(p) - 1, -1, -1):
+        for col in range(len(p[row]) - 1, -1, -1):
+            if p[row][col] == player_token:
+                tokens = 1
+                row_idx, col_idx = row, col
+                while row_idx - 1 >= 0 and col_idx - 1 >= 0:
+                    row_idx -= 1
+                    col_idx -= 1
+                    if p[row_idx][col_idx] == player_token:
+                        tokens += 1
+                        if check_diagonal_win(tokens):
+                            return True
+                    else:
+                        break
 
     return False
 
@@ -84,8 +122,7 @@ def play_round():
         display_board()
         player_turn = player_one if player_turn == player_two else player_two
 
-
-print("\nWelcome to Connect Four!")
-play_round()
-
-
+if __name__ == "__main__":
+    print("\nWelcome to Connect Four!")
+    play_round()
+    

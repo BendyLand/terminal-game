@@ -38,7 +38,12 @@ def play_round():
         print(f"It's {player_turn}'s ({player_token}) turn!")
         print("Here is the current board: ")
         display_board()
-        player_choice = int(input("Please select a column to play your token: ")) - 1
+        
+        player_choice = 0  
+        while not (1 <= player_choice <= 7):
+            player_choice = int(input("Please select a column to play your token: ")) - 1
+            if not (1 <= player_choice <= 7):
+                print("Invalid input, please try again!\n")
 
         # dynamic check to find the row
         for row in p:
@@ -46,7 +51,7 @@ def play_round():
                 row[player_choice] = player_token
                 break
             if row6[player_choice] != '_':
-                print('Column is full, pick another one!')
+                print('Column is full, pick another one!\n')
                 play_round()
         
         display_board()

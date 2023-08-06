@@ -1,6 +1,6 @@
 '''
 # Project Objectives:
-# Build a terminal program using Python
+#! Build a terminal program using Python
 #! Add at least one interactive feature using input()
 #! Use Git version control
 #! Use the command line and file navigation
@@ -47,33 +47,33 @@ def check_win(turn, choice, p_token):
         else:
             col_tokens = 0
 
-    # check diagonal (bottom-left to top-right)
-    row_idx, col_idx = 0, 0
+    # check diagonal (bottom left to top right)
+    r_index, c_index = 0, 0
     for row in range(len(p) - 1, -1, -1):
         for col in range(len(p[row])):
             if p[row][col] == p_token:
                 tokens = 1
-                row_idx, col_idx = row, col
-                while row_idx - 1 >= 0 and col_idx + 1 < len(p[0]):
-                    row_idx -= 1
-                    col_idx += 1
-                    if p[row_idx][col_idx] == p_token:
+                r_index, c_index = row, col
+                while r_index - 1 >= 0 and c_index + 1 < len(p[0]):
+                    r_index -= 1
+                    c_index += 1
+                    if p[r_index][c_index] == p_token:
                         tokens += 1
                         if check_diagonal_win(tokens):
                             return True
                     else:
                         break
 
-    # check diagonal (bottom-right to top-left)
+    # check diagonal (bottom right to top left)
     for row in range(len(p) - 1, -1, -1):
         for col in range(len(p[row]) - 1, -1, -1):
             if p[row][col] == p_token:
                 tokens = 1
-                row_idx, col_idx = row, col
-                while row_idx - 1 >= 0 and col_idx - 1 >= 0:
-                    row_idx -= 1
-                    col_idx -= 1
-                    if p[row_idx][col_idx] == p_token:
+                r_index, c_index = row, col
+                while r_index - 1 >= 0 and c_index - 1 >= 0:
+                    r_index -= 1
+                    c_index -= 1
+                    if p[r_index][c_index] == p_token:
                         tokens += 1
                         if check_diagonal_win(tokens):
                             return True

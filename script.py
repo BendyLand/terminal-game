@@ -115,3 +115,6 @@ def play_round():
 
         display_board()
         player_turn = player_one if player_turn == player_two else player_two
+
+print("\nWelcome to Connect Four!")
+play_round()

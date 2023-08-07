@@ -1,3 +1,8 @@
+player_one = input("Please enter a name for player 1: ") or "Player 1"
+player_two = input("Please enter a name for player 2: ") or "Player 2"
+player_turn = player_one
+player_token = 'x' if player_turn == player_one else 'o'
+
 row6 = ['_', '_', '_', '_', '_', '_', '_']
 row5 = ['_', '_', '_', '_', '_', '_', '_']
 row4 = ['_', '_', '_', '_', '_', '_', '_']

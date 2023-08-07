@@ -77,6 +77,7 @@ def check_win(turn, choice, p_token):
     
     return False
 
+
 def display_board():
     r6 = f"|{'|'.join(row6)}|"
     r5 = f"|{'|'.join(row5)}|"
@@ -86,3 +87,31 @@ def display_board():
     r1 = f"|{'|'.join(row1)}|"
 
     print(f"\n\t{r6}\n\t{r5}\n\t{r4}\n\t{r3}\n\t{r2}\n\t{r1}\n\t 1 2 3 4 5 6 7\n")
+
+
+def play_round():
+    game_won = False
+    while not game_won:
+        global player_turn
+        player_token = 'x' if player_turn == player_one else 'o'
+        print(f"It's {player_turn}'s ({player_token}) turn!")
+        print("Here is the current board: ")
+        display_board()
+
+        player_choice = -1
+        while not (0 <= player_choice <= 7):
+            player_choice = int(input("Please select a column to play your token (1 - 7): ")) - 1
+            if not (0 <= player_choice <= 6):
+                print("Invalid input, please try again!\n")
+
+        for row in p:
+            if row[player_choice] == '_':
+                row[player_choice] = player_token
+                game_won = check_win(player_turn, player_choice, player_token)
+                break
+            if row6[player_choice] != '_':
+                print('Column is full, pick another one!\n')
+                play_round()
+
+        display_board()
+        player_turn = player_one if player_turn == player_two else player_two

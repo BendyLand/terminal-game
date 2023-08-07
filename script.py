@@ -71,3 +71,13 @@ def check_win(turn, choice, p_token):
                         break
     
     return False
+
+def display_board():
+    r6 = f"|{'|'.join(row6)}|"
+    r5 = f"|{'|'.join(row5)}|"
+    r4 = f"|{'|'.join(row4)}|"
+    r3 = f"|{'|'.join(row3)}|"
+    r2 = f"|{'|'.join(row2)}|"
+    r1 = f"|{'|'.join(row1)}|"
+
+    print(f"\n\t{r6}\n\t{r5}\n\t{r4}\n\t{r3}\n\t{r2}\n\t{r1}\n\t 1 2 3 4 5 6 7\n")
